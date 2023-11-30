@@ -1,17 +1,21 @@
 from ultralytics import NAS
+from super_gradients.common.object_names import Models
+from super_gradients.training import models
+
+model = models.get(Models.YOLO_NAS_M, pretrained_weights="coco")
 
 
 
 
 # Load a COCO-pretrained YOLO-NAS-s model
-model = NAS('yolo_nas_m.pt')
+#model = NAS('yolo_nas_m.pt')
 
 # Display model information (optional)
-model.info()
+#model.info()
 
 
 # Run inference with the YOLO-NAS-s model on the 'bus.jpg' image
-results = model.predict(source=r'C:\Users\davbe\Crime_detection\fighting.gif', stream=True)
+results = model.predict(r'C:\Users\davbe\Crime_detection\fighting.gif')
 
 print(results)
 # Itérez sur le générateur pour obtenir les résultats

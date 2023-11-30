@@ -3,7 +3,7 @@ import super_gradients
 from super_gradients.common.object_names import Models
 from super_gradients.training import models
 
-model = models.get(Models.YOLO_NAS_L, pretrained_weights="coco")
+model = models.get(Models.YOLO_NAS_M, pretrained_weights="coco")
 
 MEDIA_PATH = r'fighting.gif'
 prediction = model.predict(MEDIA_PATH)
