@@ -13,15 +13,15 @@ def compute_color_for_labels(label):
         (0, 255, 0),  # Class 0 (e.g., person)
         (0, 0, 255),  # Class 1 (e.g., car)
         (255, 0, 0),  # Class 2 (e.g., bicycle)
-        # Ajoutez autant de couleurs que nécessaire pour vos classes
+        # couleur pour les classes
     ]
 
-    # Assurez-vous que la classe a une couleur attribuée
+    # il faut que la classe ait une couleur attribuée
     if 0 <= label < len(color_palette):
         return color_palette[label]
     else:
-        # Si la classe n'a pas de couleur attribuée, retournez une couleur par défaut
-        return (255, 255, 255)  # Blanc par défaut
+        # Si la classe n'a pas de couleur attribuee, on lui donne une couleur par défaut
+        return (255, 255, 255)  # Blanc
 
 
 
@@ -46,8 +46,7 @@ def draw_boxes(img, bbox, identities=None, categories=None, names=None, offset=(
 
 
 
-
-cap = cv2.VideoCapture(r'/fighting.mp4')  # Change 'your_video_file.mp4' to your actual video file
+cap = cv2.VideoCapture(r'../fighting.mp4')  # Change 'your_video_file.mp4' to your actual video file
 # Check if the video file is opened successfully
 if not cap.isOpened():
     print("Error: Couldn't open the video file.")
@@ -69,8 +68,8 @@ out = cv2.VideoWriter('../crime_detection/output_tracking.mp4', cv2.VideoWriter_
 
 
 cfg_deep = get_config()
-cfg_deep.merge_from_file(r"C:\Users\davbe\Crime_detection\crime_detection\DeepSORT\deep_sort_pytorch\configs\deep_sort.yaml")
-deepsort = DeepSort(r'C:/Users/davbe/Crime_detection/crime_detection/DeepSORT/deep_sort_pytorch/deep_sort/deep/checkpoint/ckpt.t7',
+cfg_deep.merge_from_file(r"C:\Users\davbe\Crime_detection\Crime_Detection_\DeepSORT\deep_sort_pytorch\configs\deep_sort.yaml")
+deepsort = DeepSort(r'C:/Users/davbe/Crime_detection/Crime_Detection_/DeepSORT/deep_sort_pytorch/deep_sort/deep/checkpoint/ckpt.t7',
                     max_dist=cfg_deep.DEEPSORT.MAX_DIST, min_confidence=cfg_deep.DEEPSORT.MIN_CONFIDENCE,
                     nms_max_overlap=cfg_deep.DEEPSORT.NMS_MAX_OVERLAP,
                     max_iou_distance=cfg_deep.DEEPSORT.MAX_IOU_DISTANCE,
@@ -99,7 +98,7 @@ while True:
       confidences = result.prediction.confidence
       labels = result.prediction.labels.tolist()
 
-      print("Number of detections:", len(bbox_xyxys))  # Ajoutez cette ligne
+      print("Number of detections:", len(bbox_xyxys))
 
       for (bbox_xyxy, confidence, cls) in zip(bbox_xyxys, confidences, labels):
           bbox = np.array(bbox_xyxy)
